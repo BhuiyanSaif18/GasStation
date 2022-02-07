@@ -4,6 +4,7 @@ var Web3 = require('web3');
 const fs = require('fs');
 const schedule = require('node-schedule');
 require('dotenv').config();
+const { ethers } = require("ethers");
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -18,8 +19,12 @@ router.get('/', function(req, res, next) {
     try {
       gasPrice = JSON.parse(jsonString);
       // web3.utils.fromWei(gasPrice.gasprice)
-      // console.log(gasPrice);
-      res.render('keys/gasprice', {viewTitle : web3.utils.fromWei(gasPrice.gasprice) + " FTM"});
+      if(gasPrice.gasprice){
+        res.render('keys/gasprice', {viewTitle : "Gas Price " + web3.utils.fromWei(gasPrice.gasprice) + " FTM"});
+      }
+      else{
+        res.render('keys/gasprice', {viewTitle : "Gas Price not retrived yet"});
+      }
       
     } catch (err) {
       console.log("Error parsing JSON string:", err);

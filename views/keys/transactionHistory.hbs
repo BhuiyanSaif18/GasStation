@@ -1,0 +1,54 @@
+{{!-- <h3><a class="btn btn-secondary" href="/verify"><i class="fa fa-plus"></i> Add New</a> Public Key</h3> --}}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            {{!-- <th>Public Key</th>
+            <th>hash</th>
+            <th>nonce</th>
+            <th>blockHash</th> --}}
+            <th>from</th>
+            <th>to</th>
+            <th>value</th>
+            {{!-- <th>gas</th>
+            <th>gasPrice</th> --}}
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each list}}
+        <tr>
+            {{!-- <td>{{this.blockNumber}}</td>
+             <td>{{this.hash}}</td>
+             <td>{{this.nonce}}</td>
+             <td>{{this.blockHash}}</td> --}}
+             <td>{{this.from}}</td>
+             <td>{{this.to}}</td>
+             <td>{{this.value}}</td>
+             {{!-- <td>{{this.gas}}</td> --}}
+             {{!-- <td>{{this.gasPrice}}</td> --}}
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+
+
+
+{{!-- blockNumber: '7317712',
+    timeStamp: '1644204085',
+    hash: '0xb5ccaa60d3d2ce33be08f664abd4575c482afff8cc4681bdc4d5c08405504010',
+    nonce: '3632033',
+    blockHash: '0x000017cf00007781b11f33030c8dd8f5b0a67515016b766b94df36ff823eef69',
+    transactionIndex: '0',
+    from: '0x9b2bb6290fb910a960ec344cdf2ae60ba89647f6',
+    to: '0x959d3e208f6e0ec30ddb861e153f8a365c580753',
+    value: '10000000000000000000',
+    gas: '21000',
+    gasPrice: '200018000000',
+    isError: '0',
+    txreceipt_status: '1',
+    input: '0x',
+    contractAddress: '',
+    cumulativeGasUsed: '21000',
+    gasUsed: '21000',
+    confirmations: '1067' --}}
