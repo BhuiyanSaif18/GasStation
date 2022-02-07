@@ -4,6 +4,7 @@ var request = require('request');
 var Web3 = require('web3');
 const fs = require('fs');
 require('dotenv').config();
+const { ethers } = require("ethers");
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -38,7 +39,7 @@ router.get('/', function(req, res, next) {
                   if (!error && response.statusCode == 200) {
                     result = JSON.parse(body).result;
                     for (var i in result) {
-                        result[i].difference = web3.utils.fromWei((parseInt(result[i].balance) -parseInt(gasPrice.gasprice)).toString()) ;
+                        result[i].difference = ethers.utils.formatUnits((parseInt(result[i].balance) - parseInt(gasPrice.gasprice)).toString(), "gwei") + " GWei" ;
                         result[i].balance = web3.utils.fromWei(result[i].balance.toString() )+ " FTM";
                       }
                     }

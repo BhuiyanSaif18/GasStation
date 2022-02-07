@@ -20,7 +20,7 @@ router.get('/', function(req, res, next) {
       gasPrice = JSON.parse(jsonString);
       // web3.utils.fromWei(gasPrice.gasprice)
       if(gasPrice.gasprice){
-        res.render('keys/gasprice', {viewTitle : "Gas Price " + web3.utils.fromWei(gasPrice.gasprice) + " FTM"});
+        res.render('keys/gasprice', {viewTitle : "Gas Price " + ethers.utils.formatUnits(gasPrice.gasprice, "gwei") + " GWei"});
       }
       else{
         res.render('keys/gasprice', {viewTitle : "Gas Price not retrived yet"});
