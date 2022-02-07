@@ -1,0 +1,17 @@
+<h3><a class="btn btn-secondary" href="/verify"><i class="fa fa-plus"></i> Add New</a> Public Key</h3>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Public Key</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each list}}
+        <tr>
+            <td>{{this}}</td>
+             {{!-- <td>{{this.balance}}</td> --}}
+        </tr>
+        {{/each}}
+    </tbody>
+</table>

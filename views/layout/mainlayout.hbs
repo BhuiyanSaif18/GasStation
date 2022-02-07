@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Gas Station</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body class="bg-info">
+    <div class="row">
+        <li>
+            <ul>
+
+        <a class="btn btn-secondary" href="/gas"><i class="fa fa-list-alt"></i> Gas Price</a>
+            </ul>
+            <ul>
+
+        <a class="btn btn-secondary" href="/verify"><i class="fa fa-list-alt"></i> Add Public Key</a>
+            </ul>
+            <ul>
+
+        <a class="btn btn-secondary" href="/verify/list"><i class="fa fa-list-alt"></i> View All White Listed Keys</a>
+            </ul>
+            <ul>
+
+        <a class="btn btn-secondary" href="/scan"><i class="fa fa-list-alt"></i> Scan balances</a>
+            </ul>
+            {{!-- <ul>
+
+        <a class="btn btn-secondary" href="/verify/list"><i class="fa fa-list-alt"></i> View All</a>
+            </ul> --}}
+        </li>
+
+        <div class="col-md-6 offset-md-3" style="background-color: #fff;margin-top: 25px;padding:20px;">
+            {{{body}}}
+        </div>
+    </div>
+
+</body>
+
+</html>
