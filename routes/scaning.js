@@ -3,11 +3,12 @@ var router = express.Router();
 var request = require('request');
 var Web3 = require('web3');
 const fs = require('fs');
+require('dotenv').config();
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   let address = req.query.pubKey;
-  var web3 = new Web3(new Web3.providers.HttpProvider('https://rpc.testnet.fantom.network/'));
+  var web3 = new Web3(new Web3.providers.HttpProvider(process.env.FTM_TEST_NET));
 
   let newData = [];
 
@@ -22,7 +23,7 @@ router.get('/', function(req, res, next) {
 
       if(publist.length>0){
         var addresses = publist.join(',');
-        var url = 'https://api-testnet.ftmscan.com/api?module=account&action=balancemulti&address='+addresses+'&tag=latest&apikey=H1AU183381C5TDNMN9KQECRBR7QBEPPP3P'
+        var url = process.env.FTM_TEST_NET_API_URL+'?module=account&action=balancemulti&address='+addresses+'&tag=latest&apikey=' + process.env.FTM_API_KEY
   
         request.get(
           url,

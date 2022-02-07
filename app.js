@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var exphbs = require('express-handlebars');
 var Web3 = require('web3');
+require('dotenv').config();
 const fs = require('fs');
 
 const schedule = require('node-schedule');
@@ -38,7 +39,7 @@ app.use('/scan', scaningRouter);
 app.use('/account', accountRouter);
 
 const job = schedule.scheduleJob('* * * * *', function(){
-  var web3 = new Web3(new Web3.providers.HttpProvider('https://rpcapi.fantom.network'));
+  var web3 = new Web3(new Web3.providers.HttpProvider(process.env.FTM_MAIN_NET));
   web3.eth.getGasPrice(function(error, result) {
     var GasPrice = {
       gasprice : result

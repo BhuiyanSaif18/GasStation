@@ -3,12 +3,13 @@ var Web3 = require('web3');
 var router = express.Router();
 const fs = require('fs');
 var request = require('request');
+require('dotenv').config();
 
 var transactRouter = require('./transact');
 
 router.get('/', async function(req, res, next) {
     var address = req.query.publicKey;
-    var web3 = new Web3(new Web3.providers.HttpProvider('https://rpc.testnet.fantom.network/'));
+    var web3 = new Web3(new Web3.providers.HttpProvider( process.env.FTM_TEST_NET ));
 
 
     if(web3.utils.isAddress(address)){
@@ -41,7 +42,7 @@ router.get('/', async function(req, res, next) {
           console.log("Error parsing JSON string:", err);
         }
       });
-      var url = 'https://api-testnet.ftmscan.com/api?module=account&action=txlist&address='+address+'&startblock=0&endblock=99999999&sort=asc&apikey=H1AU183381C5TDNMN9KQECRBR7QBEPPP3P'
+      var url = process.env.FTM_TEST_NET_API_URL +'?module=account&action=txlist&address='+address+'&startblock=0&endblock=99999999&sort=asc&apikey='+process.env.FTM_API_KEY;
       request.get(url, async function (error, response, body) {
           if (!error && response.statusCode == 200) {
             result = JSON.parse(response.body).result;
@@ -63,13 +64,6 @@ router.get('/', async function(req, res, next) {
     }
 );
 
-// router.get('/verify', async function(req, res, next) {
-//     var web3 = new Web3(new Web3.providers.HttpProvider('https://rpc.testnet.fantom.network/'));
-//     res.render("keys/add", {
-//       viewTitle: web3.utils.isAddress(address)? "Valid Address" : "Invalid Address"
-//     });
-//   }
-// );
 
 
 router.get('/list', (req, res) => {

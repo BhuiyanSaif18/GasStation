@@ -14,7 +14,7 @@ function transaction (req) {
     let receiptAddress = req;
     console.log(req);
     const myPrivateKeyHex = process.env.DAPPPRIVATEKEY;
-    let provider = new HDWalletProvider(myPrivateKeyHex, "https://rpc.testnet.fantom.network/");
+    let provider = new HDWalletProvider(myPrivateKeyHex, process.env.FTM_TEST_NET);
     const localKeyProvider = new HDWalletProvider({
         privateKeys: [myPrivateKeyHex],
         providerOrUrl: provider,
@@ -50,37 +50,3 @@ function transaction (req) {
 
 
 module.exports = {transaction};
-
-
-
-
-
-
-
-
-
-// router.get('/', function(req, res, next) {
-//     let receiptAddress = req.query.pubKey;
-//     const myPrivateKeyHex = process.env.DAPPPRIVATEKEY;
-//     let provider = new HDWalletProvider(myPrivateKeyHex, "https://rpc.testnet.fantom.network/");
-//     const localKeyProvider = new HDWalletProvider({
-//         privateKeys: [myPrivateKeyHex],
-//         providerOrUrl: provider,
-//     });
-//     const web3 = new Web3(localKeyProvider);
-
-//     web3.eth.sendTransaction({
-//         to: "0x959D3e208f6E0ec30ddb861E153f8a365c580753",
-//         value: '0x200018000000',
-//         data: '',
-//         from: process.env.DAPPPUBLICKEY 
-//     })
-//     .on('transactionHash', function(hash){
-//         console.log(hash);
-//     })
-//     .on('error', console.error);
-//   });
-
-
-
-// module.exports = router;
