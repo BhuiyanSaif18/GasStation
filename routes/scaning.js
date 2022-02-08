@@ -35,6 +35,11 @@ router.get('/', async function(req, res, next) {
       }
     );
   }
+  else{
+    res.render("keys/balancelist", {
+      list: []
+    });
+  }
 });
 
 
