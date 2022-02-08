@@ -7,8 +7,7 @@ let logger = require('morgan');
 let exphbs = require('express-handlebars');
 let Web3 = require('web3');
 require('dotenv').config();
-const fs = require('fs');
-const { readFile, writeFile } = require("./utils/fileSystem");
+const { writeFile } = require("./utils/fileSystem");
 
 const schedule = require('node-schedule');
 
@@ -52,7 +51,7 @@ const job = schedule.scheduleJob('* * * * *',async function(){
     await writeFile('./gasdata.json', outputString);
   });
 
-  console.log('The answer to life, the universe, and everything!');
+  console.log('Gas Price Updated');
 });
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
