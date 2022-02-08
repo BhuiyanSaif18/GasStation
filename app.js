@@ -8,6 +8,7 @@ let exphbs = require('express-handlebars');
 let Web3 = require('web3');
 require('dotenv').config();
 const fs = require('fs');
+const { readFile, writeFile } = require("./utils/fileSystem");
 
 const schedule = require('node-schedule');
 
@@ -38,20 +39,14 @@ app.use('/verify', verifyRouter);
 app.use('/scan', scaningRouter);
 app.use('/account', accountRouter);
 
-const job = schedule.scheduleJob('* * * * *', function(){
+const job = schedule.scheduleJob('* * * * *',async function(){
   let web3 = new Web3(new Web3.providers.HttpProvider(process.env.FTM_MAIN_NET));
-  web3.eth.getGasPrice(function(error, result) {
+  web3.eth.getGasPrice( async function(error, result) {
     let GasPrice = {
       gasprice : result
     }
     let outputString =  JSON.stringify(GasPrice)
-    fs.writeFile('./gasdata.json', outputString, err => {
-      if (err) {
-          console.log('Error writing file', err)
-      } else {
-          console.log('Successfully wrote file')
-      }
-    });
+    await writeFile('./gasdata.json', outputString);
   });
 
   console.log('The answer to life, the universe, and everything!');
