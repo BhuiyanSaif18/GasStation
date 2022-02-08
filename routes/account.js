@@ -12,12 +12,11 @@ router.get('/', function(req, res, next) {
     request.get(url,
     async function (error, response, body) {
         if (!error && response.statusCode == 200) {
-            result = JSON.parse(body).result;
+            let result = JSON.parse(body).result;
             //console.log( result);
-            result = JSON.parse(body).result;
-                for (let i in result) {
-                    result[i].value = web3.utils.fromWei(result[i].value).toString() + " FTM";
-                  }
+            for (let i in result) {
+                result[i].value = web3.utils.fromWei(result[i].value).toString() + " FTM";
+            }
 
             res.render("keys/transactionHistory", {
                 list: result

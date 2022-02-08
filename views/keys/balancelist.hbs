@@ -11,7 +11,9 @@
     <tbody>
         {{#each list}}
         <tr>
-            <td>{{this.account}}</td>
+            {{!-- <button type="submit" class="btn btn-info"><i class="fa fa-database"></i> {{this.account}}</button> --}}
+        
+            <td><a href="/account?pubKey={{this.account}}">{{this.account}}</a></td>
              <td>{{this.balance}}</td>
              <td>{{this.difference}}</td>
              
