@@ -41,9 +41,12 @@ app.use('/account', accountRouter);
 
 const job = schedule.scheduleJob('* * * * *',async function(){
   let web3 = new Web3(new Web3.providers.HttpProvider(process.env.FTM_MAIN_NET));
+  let today = new Date();
+  let time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
   web3.eth.getGasPrice( async function(error, result) {
     let GasPrice = {
-      gasprice : result
+      gasprice : result,
+      updateTime : time
     }
     let outputString =  JSON.stringify(GasPrice)
     await writeFile('./gasdata.json', outputString);

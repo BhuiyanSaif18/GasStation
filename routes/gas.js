@@ -13,10 +13,13 @@ router.get('/', async function(req, res, next) {
   let web3 = new Web3(new Web3.providers.HttpProvider(process.env.FTM_MAIN_NET));
 
   let data = await readFile('./gasdata.json');
-  let gasPrice = JSON.parse(data).gasprice;
-
-  if(gasPrice){
-    res.render('keys/gasprice', {viewTitle : "Gas Price " + ethers.utils.formatUnits(gasPrice, "gwei") + " GWei"});
+  let gasPriceData = JSON.parse(data);
+  
+  if(gasPriceData){
+    res.render('keys/gasprice', {
+      viewTitle : ethers.utils.formatUnits(gasPriceData.gasprice, "gwei"),
+      LastUpdateTime : gasPriceData.updateTime
+    });
   }
   else{
     res.render('keys/gasprice', {viewTitle : "Gas Price not retrived yet"});
