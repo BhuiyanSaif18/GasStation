@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-var keySchema = new mongoose.Schema({
+let keySchema = new mongoose.Schema({
     publicKey: {
         type: String,
         required: 'This field is required.'

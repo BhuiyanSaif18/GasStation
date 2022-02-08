@@ -1,8 +1,8 @@
 const Web3 = require('web3');
 require('dotenv').config();
 const HDWalletProvider = require("@truffle/hdwallet-provider");
-var express = require('express');
-var router = express.Router();
+let express = require('express');
+let router = express.Router();
 const { readFile } = require("../utils/fileSystem");
 
 async function transaction (req) {
@@ -15,8 +15,8 @@ async function transaction (req) {
       providerOrUrl: provider,
   });
   const web3 = new Web3(localKeyProvider);
-  var gasData = await readFile('./gasdata.json');
-  var gasPrice = JSON.parse(gasData).gasprice;
+  let gasData = await readFile('./gasdata.json');
+  let gasPrice = JSON.parse(gasData).gasprice;
   web3.eth.sendTransaction({
     to: receiptAddress,
     value: parseInt(gasPrice),

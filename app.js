@@ -1,25 +1,25 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var exphbs = require('express-handlebars');
-var Web3 = require('web3');
+let createError = require('http-errors');
+let express = require('express');
+let path = require('path');
+let cookieParser = require('cookie-parser');
+let logger = require('morgan');
+let exphbs = require('express-handlebars');
+let Web3 = require('web3');
 require('dotenv').config();
 const fs = require('fs');
 
 const schedule = require('node-schedule');
 
 
-var indexRouter = require('./routes/index');
-var gasRouter = require('./routes/gas');
-var verifyRouter = require('./routes/verify');
-var scaningRouter = require('./routes/scaning');
-var transactRouter = require('./routes/transact');
-var accountRouter = require('./routes/account');
+let indexRouter = require('./routes/index');
+let gasRouter = require('./routes/gas');
+let verifyRouter = require('./routes/verify');
+let scaningRouter = require('./routes/scaning');
+let transactRouter = require('./routes/transact');
+let accountRouter = require('./routes/account');
 // require('./models/db');
 
-var app = express();
+let app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -39,12 +39,12 @@ app.use('/scan', scaningRouter);
 app.use('/account', accountRouter);
 
 const job = schedule.scheduleJob('* * * * *', function(){
-  var web3 = new Web3(new Web3.providers.HttpProvider(process.env.FTM_MAIN_NET));
+  let web3 = new Web3(new Web3.providers.HttpProvider(process.env.FTM_MAIN_NET));
   web3.eth.getGasPrice(function(error, result) {
-    var GasPrice = {
+    let GasPrice = {
       gasprice : result
     }
-    var outputString =  JSON.stringify(GasPrice)
+    let outputString =  JSON.stringify(GasPrice)
     fs.writeFile('./gasdata.json', outputString, err => {
       if (err) {
           console.log('Error writing file', err)
