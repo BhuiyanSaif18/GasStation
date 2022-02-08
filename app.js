@@ -1,3 +1,4 @@
+"use strict";
 let createError = require('http-errors');
 let express = require('express');
 let path = require('path');
@@ -15,7 +16,6 @@ let indexRouter = require('./routes/index');
 let gasRouter = require('./routes/gas');
 let verifyRouter = require('./routes/verify');
 let scaningRouter = require('./routes/scaning');
-let transactRouter = require('./routes/transact');
 let accountRouter = require('./routes/account');
 // require('./models/db');
 

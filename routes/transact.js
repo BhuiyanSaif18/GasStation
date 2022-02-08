@@ -1,8 +1,7 @@
+"use strict";
 const Web3 = require('web3');
 require('dotenv').config();
 const HDWalletProvider = require("@truffle/hdwallet-provider");
-let express = require('express');
-let router = express.Router();
 const { readFile } = require("../utils/fileSystem");
 
 async function transaction (req) {

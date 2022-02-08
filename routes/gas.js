@@ -1,7 +1,7 @@
+"use strict";
 let express = require('express');
 let router = express.Router();
 let Web3 = require('web3');
-const schedule = require('node-schedule');
 require('dotenv').config();
 const { ethers } = require("ethers");
 const { readFile } = require("../utils/fileSystem");

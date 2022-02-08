@@ -1,7 +1,7 @@
+"use strict";
 let express = require('express');
 let Web3 = require('web3');
 let router = express.Router();
-const fs = require('fs');
 let request = require('request');
 require('dotenv').config();
 const { readFile, writeFile } = require("../utils/fileSystem");
@@ -14,7 +14,7 @@ router.get('/', async function(req, res, next) {
 
   if(web3.utils.isAddress(address)){
     let CustomersStringifyData = await readFile('./customer.json');
-    customerData = JSON.parse(CustomersStringifyData);
+    let customerData = JSON.parse(CustomersStringifyData);
       console.log("Customer address is:", customerData);
       
       if(!customerData.WhiteList.includes(address)){
@@ -23,6 +23,7 @@ router.get('/', async function(req, res, next) {
         await writeFile('./customer.json', outputjsonString)
         let url = process.env.FTM_TEST_NET_API_URL +'?module=account&action=txlist&address='+address+'&startblock=0&endblock=99999999&sort=asc&apikey='+process.env.FTM_API_KEY;
         request.get(url, async function (error, response, body) {
+          let result = {};
           if (!error && response.statusCode == 200) {
             result = JSON.parse(response.body).result;
             console.log( result.length);

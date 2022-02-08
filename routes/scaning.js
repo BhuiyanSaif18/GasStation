@@ -1,15 +1,14 @@
+"use strict";
 let express = require('express');
 let router = express.Router();
 let request = require('request');
 let Web3 = require('web3');
-const fs = require('fs');
 require('dotenv').config();
 const { ethers } = require("ethers");
 const { readFile } = require("../utils/fileSystem");
 
 /* GET users listing. */
 router.get('/', async function(req, res, next) {
-  let address = req.query.pubKey;
   let web3 = new Web3(new Web3.providers.HttpProvider(process.env.FTM_TEST_NET));
 
   let CustomerData = await readFile('./customer.json', 'utf8');
@@ -21,6 +20,7 @@ router.get('/', async function(req, res, next) {
     let url = process.env.FTM_TEST_NET_API_URL+'?module=account&action=balancemulti&address='+whiteListedCustomerAddresses+'&tag=latest&apikey=' + process.env.FTM_API_KEY
 
     request.get(url, async function (error, response, body) {
+      let result = {}
       if (!error && response.statusCode == 200) {
         result = JSON.parse(body).result;
         for (let i in result) {
