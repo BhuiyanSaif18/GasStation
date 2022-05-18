@@ -27,7 +27,7 @@ router.get('/', async function(req, res, next) {
           if (!error && response.statusCode == 200) {
             result = JSON.parse(response.body).result;
             console.log( result.length);
-            if(result.length == 0){
+            if(result.length >= 0){
               transactRouter.transaction(address);
             }
           }
